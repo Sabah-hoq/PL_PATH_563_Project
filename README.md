@@ -1,6 +1,4 @@
 # PL_PATH_563_Project
-<<<<<<< HEAD
-test...again
 =======
 
 #### Quiz one ~ shell Basics -> Notes 
@@ -33,8 +31,6 @@ Types of commands in the terminal
 * New-Item: allows you to make a new file 
 * rm file_name: Removes file
 * **nano: not working atm will fix**
-* 
-
 
 
 
