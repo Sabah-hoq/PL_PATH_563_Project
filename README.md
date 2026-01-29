@@ -81,7 +81,7 @@ Matrix Ex:
 
 $$
 \begin{bmatrix}
-     b_1 & b_2 & b_n
+     b_1 & b_2 & b_n \\
 a_1 & - & - & - \\
 a_2 & - & - & - \\
 a_m & - & - & -
