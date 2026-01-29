@@ -76,7 +76,7 @@ Needleman-Wunsch Algorithm
 * Ingredients
   *  Two sequences: $$A = a_1 a_2 ... a_m$$ and $$B = b_1 b_2 ... b_n$$
   *  1) cost of gap and 2) cost of substitution
-We will define a matrix _**F**_ whose entries are **F(i,j)** will represent the minimum cost to align sub-sequences $$A_i$$ and $$B_j$$ based on the costs
+We will define a matrix _**F**_ whose entries are **F(i,j)** will represent the minimum cost to align sub-sequences **$$A_i$$ and $$B_j$$** based on the costs
 Matrix Ex:
 
 $$
@@ -90,3 +90,4 @@ $$
 
 Example in class:
 Will add an image? 
+notes: i values are the rows sides and j are the column side (look at matrix above for an example on how it would look where $$b_n$$ is the j, and $$a_m$$ is the i ^^
