@@ -74,10 +74,11 @@ Q) 9.3 -> How would you change the alignment between sequences S = AACT and S'= 
 **Pairwise sequence Alignment**
 Needleman-Wunsch Algorithm
 * Ingredients
-  *  Two sequences: *$$A = a_1 a_2 ... a_m$$* and *$$B = b_1 b_2 ... b_n$$*
+  *  Two sequences: $$A = a_1 a_2 ... a_m$$ and $$B = b_1 b_2 ... b_n$$
   *  1) cost of gap and 2) cost of substitution
-We will define a matrix _**F**_ whose entries are _**F(i,j)**_ will represent the minimum cost to align sub-sequences _$$A_i$$_ and _$$B_j$$_ based on the costs
+We will define a matrix _**F**_ whose entries are **F(i,j)** will represent the minimum cost to align sub-sequences $$A_i$$ and $$B_j$$ based on the costs
 Matrix Ex:
+
 $$
 \begin{bmatrix}
      b_1 & b_2 & b_n
