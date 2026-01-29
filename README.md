@@ -90,4 +90,11 @@ $$
 
 Example in class:
 Will add an image? 
-notes: i values are the rows sides and j are the column side (look at matrix above for an example on how it would look where $$b_n$$ is the j, and $$a_m$$ is the i ^^
+notes: i values are the rows sides, and j are the column sides (look at the matrix above for an example on how it would look where $$b_n$$ is the j, and $$a_m$$ is the i ^^
+- Arrows should be added to show alignment '&searr;' and '->' these two will be used!
+- The cost of adding each side determines each alignment
+  - such that $$F(0,0) = a_i0 + b_j0$$ then $$F(1,1) = F(0,1) + (a_i0 + b_j1)$$
+  - However, for subsequent rows, this changes and picks the minimum number 
+    1) ...
+    2) ...
+    3) ...
