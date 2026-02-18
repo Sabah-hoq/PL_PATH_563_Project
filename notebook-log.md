@@ -5,7 +5,7 @@ Fasta file was found via [ncbi]([url](https://trace.ncbi.nlm.nih.gov/Traces/?vie
 
 These are the lines of code will be edited tmmr cause me tired
 
-
+Had to change my data as MAAFT couldn't handle 1GB.... :(
 
 ```shell
 # This renames the file correctly
@@ -78,8 +78,18 @@ Strategy:
 If unsure which option to use, try 'mafft --auto input > output'.
 For more information, see 'mafft --help', 'mafft --man' and the mafft page.
 
+
+##MAFFT Assumputions and Limitations yuh
+Description: MAFFT uses Fast Fourier Transform (FFT) to rapidly find homologous segments, making it significantly faster than traditional methods while maintaining high accuracy for protein sequences.
+
+Assumptions: The method assumes that the input sequences (COX1 proteins) are orthologous (descended from a common ancestor) and share global homology.
+
+Limitations: It may struggle with highly divergent sequences where gap penalties (scoring how much a "dash" costs) don't perfectly match biological reality.
+
 The default gap scoring scheme has been changed in version 7.110 (2013 Oct).
 It tends to insert more gaps into gap-rich regions than previous versions.
 To disable this change, add the --leavegappyregion option.
 
+
 PS C:\Users\sabah\mafft-7.526-win64-signed\mafft-win>
+
