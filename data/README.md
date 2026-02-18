@@ -7,3 +7,8 @@
 | **Adélie Penguin** | *Pygoscelis adeliae* | Fellow Antarctic resident | [poo](https://www.ncbi.nlm.nih.gov/datasets/gene/26737703/#summary) |
 | **Gentoo Penguin** | *Pygoscelis papua* | Closely related genus | [can](https://www.ncbi.nlm.nih.gov/datasets/gene/36935527/#summary) |
 | **Little Blue Penguin** | *Eudyptula minor* | Distant relative | [lol](https://www.ncbi.nlm.nih.gov/datasets/gene/806254/#summary) |
+
+
+
+p.fasta -> combined protein sequence in txt file used for alignment sequencing  
+aligned_penguins.fasta -> MAFFT
