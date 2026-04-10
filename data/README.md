@@ -1,20 +1,14 @@
-\### Resources for Data :)
-
-
-
-
+### Resources for Data :)
 
 | Common Name | Scientific Name | Relation to Emperor | Data Link |
-
 | :--- | :--- | :--- | :--- |
+| **Emperor Penguin** | *Aptenodytes forsteri* | Your primary subject | [yuh](https://www.ncbi.nlm.nih.gov/datasets/gene/26045193/#transcripts-and-proteins) |
+| **King Penguin** | *Aptenodytes patagonicus* | Closest living relative | [meh](https://www.ncbi.nlm.nih.gov/datasets/gene/42904018/) |
+| **Adélie Penguin** | *Pygoscelis adeliae* | Fellow Antarctic resident | [poo](https://www.ncbi.nlm.nih.gov/datasets/gene/26737703/#summary) |
+| **Gentoo Penguin** | *Pygoscelis papua* | Closely related genus | [can](https://www.ncbi.nlm.nih.gov/datasets/gene/36935527/#summary) |
+| **Little Blue Penguin** | *Eudyptula minor* | Distant relative | [lol](https://www.ncbi.nlm.nih.gov/datasets/gene/806254/#summary) |
 
-| \*\*Emperor Penguin\*\* | \*Aptenodytes forsteri\* | Your primary subject | \[yuh](https://www.ncbi.nlm.nih.gov/datasets/gene/26045193/#transcripts-and-proteins)|
 
-| \*\*King Penguin\*\* | \*Aptenodytes patagonicus\* | Closest living relative | \[meh](https://www.ncbi.nlm.nih.gov/datasets/gene/42904018/) |
 
-| \*\*Adélie Penguin\*\* | \*Pygoscelis adeliae\* | Fellow Antarctic resident | \[poo](https://www.ncbi.nlm.nih.gov/datasets/gene/26737703/#summary) |
-
-| \*\*Gentoo Penguin\*\* | \*Pygoscelis papua\* | Closely related genus | \[can](https://www.ncbi.nlm.nih.gov/datasets/gene/36935527/#summary) |
-
-| \*\*Little Blue Penguin\*\* | \*Eudyptula minor\* | Distant relative | \[lol](https://www.ncbi.nlm.nih.gov/datasets/gene/806254/#summary) |
-
+p.fasta -> combined protein sequence in txt file used for alignment sequencing  
+aligned_penguins.fasta -> MAFFT
