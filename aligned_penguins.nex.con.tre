@@ -1,0 +1,22 @@
+#NEXUS
+[ID: 0212991601]
+begin taxa;
+	dimensions ntax=5;
+	taxlabels
+		aptenodytes_forsteri_COX1
+		aptenodytes_patagonicus_COX1
+		eudyptula_minor_COX1
+		pygoscelis_adeliae_COX1
+		pygoscelis_papua_COX1
+		;
+end;
+begin trees;
+	translate
+		1	aptenodytes_forsteri_COX1,
+		2	aptenodytes_patagonicus_COX1,
+		3	eudyptula_minor_COX1,
+		4	pygoscelis_adeliae_COX1,
+		5	pygoscelis_papua_COX1
+		;
+   tree con_50_majrule = [&U] (1[&prob=1.00000000e+000,prob_stddev=0.00000000e+000,prob_range={1.00000000e+000,1.00000000e+000},prob(percent)="100",prob+-sd="100+-0"]:9.667904e-004[&length_mean=1.37727836e-003,length_median=9.66790400e-004,length_95%HPD={2.76881200e-007,4.04839400e-003}],2[&prob=1.00000000e+000,prob_stddev=0.00000000e+000,prob_range={1.00000000e+000,1.00000000e+000},prob(percent)="100",prob+-sd="100+-0"]:5.230183e-003[&length_mean=5.74660110e-003,length_median=5.23018300e-003,length_95%HPD={1.05154100e-003,1.16130200e-002}],((3[&prob=1.00000000e+000,prob_stddev=0.00000000e+000,prob_range={1.00000000e+000,1.00000000e+000},prob(percent)="100",prob+-sd="100+-0"]:9.568653e-003[&length_mean=1.00419282e-002,length_median=9.56865300e-003,length_95%HPD={2.83101000e-003,1.75501600e-002}],5[&prob=1.00000000e+000,prob_stddev=0.00000000e+000,prob_range={1.00000000e+000,1.00000000e+000},prob(percent)="100",prob+-sd="100+-0"]:9.920014e-004[&length_mean=1.45653530e-003,length_median=9.92001400e-004,length_95%HPD={1.15902700e-007,4.32407300e-003}])[&prob=9.78014657e-001,prob_stddev=2.82654276e-003,prob_range={9.76015989e-001,9.80013324e-001},prob(percent)="98",prob+-sd="98+-0"]:2.384635e-003[&length_mean=2.89098559e-003,length_median=2.38463500e-003,length_95%HPD={1.31513700e-005,7.01479400e-003}],4[&prob=1.00000000e+000,prob_stddev=0.00000000e+000,prob_range={1.00000000e+000,1.00000000e+000},prob(percent)="100",prob+-sd="100+-0"]:3.861289e-003[&length_mean=4.33866976e-003,length_median=3.86128900e-003,length_95%HPD={4.16579400e-004,9.36705000e-003}])[&prob=1.00000000e+000,prob_stddev=0.00000000e+000,prob_range={1.00000000e+000,1.00000000e+000},prob(percent)="100",prob+-sd="100+-0"]:5.275043e-003[&length_mean=5.82764024e-003,length_median=5.27504300e-003,length_95%HPD={8.98656100e-004,1.14561600e-002}]);
+end;
