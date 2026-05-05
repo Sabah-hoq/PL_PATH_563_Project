@@ -104,7 +104,7 @@ If unsure which option to use, try 'mafft --auto input > output'.
 For more information, see 'mafft --help', 'mafft --man' and the mafft page.
 
 
-### MAFFT Assumputions and Limitations yuh
+### MAFFT Assumptions and Limitations yuh
 Description: MAFFT uses Fast Fourier Transform (FFT) to rapidly find homologous segments, making it significantly faster than traditional methods while maintaining high accuracy for protein sequences.
 
 Assumptions: The method assumes that the input sequences (COX1 proteins) are orthologous (descended from a common ancestor) and share global homology.
@@ -119,3 +119,14 @@ To disable this change, add the --leavegappyregion option.
 PS C:\Users\sabah\mafft-7.526-win64-signed\mafft-win>
 
 ## Viewing Alignment
+
+## Parsimony and Distance Trees
+
+## IQ-TREE
+
+## MrBayes
+
+## ASTRAL
+
+
+
