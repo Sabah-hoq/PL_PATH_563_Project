@@ -1,11 +1,25 @@
-Data was taken from this article. 
+Data was taken from the NCBI
 ===
+Link to all data can be found here: ...
 
-Fasta file was found via [ncbi]([url](https://trace.ncbi.nlm.nih.gov/Traces/?view=run_browser&acc=ERR11777491&display=download)) 
+## Getting Data 
+On the NCBI website, I looked for specific species of penguins like *Aptenodytes forsteri* (my main species). 
 
-These are the lines of code will be edited tmmr cause me tired
+Selected the "Protein sequences (FASTA)" as my download option. Given a zip file containing all the information, I went to the file named "protein.faa" an FAA file. I read the contents in Notepad, a text reader.
+Contents looked like:
+```Notes
+>YP_009166094.1 COX1 [organism=Aptenodytes forsteri] [GeneID=26045193]
+MTFINRWLFSTNHKDIGTLYLIFGAWAGMAGTALSLLIRAELGQPGTLLGDDQIYNVIVTAHAFVMIFFM
+VMPIMIGGFGNWLVPLMIGAPDMAFPRMNNMSFWLLPPSFLLLLASSTVEAGAGTGWTVYPPLAGNLAHA
+GPSVDLAIFSLHLAGVSSILGAINFITTAINMKPPALSQYQTPLFVWSVLITAVLLLLSLPVLAAGITML
+LTDRNLNTTFFDPAGGGDPVLYQHLFWFFGHPEVYILILPGFGIISHVVTYYAGKKEPFGYMGMVWAMLS
+IGFLGFIVWAHHMFTVGMDVDTRAYFTSATMIIAIPTGIKVFSWLATLHGGTIKWDPPMLWALGFIFLFT
+IGGLTGIVLANSSLDIALHDTYYVVAHFHYVLSMGAVFAILAGFTHWFPLFTGYTLHTTWAKAHFGVMFT
+GVNLTFFPQHFLGLAGMPRRYSDYPDAYTVWNTMSSIGSLISMTAVIMLMFIIWEAFTSKRKVLQPELTA
+TNVEWIHGCPPPYHTFEEPAFVQVQE
+```
 
-Had to change my data as MAAFT couldn't handle 1GB.... :(
+
 
 ```shell
 # This renames the file correctly
