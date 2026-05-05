@@ -18,8 +18,19 @@ IGGLTGIVLANSSLDIALHDTYYVVAHFHYVLSMGAVFAILAGFTHWFPLFTGYTLHTTWAKAHFGVMFT
 GVNLTFFPQHFLGLAGMPRRYSDYPDAYTVWNTMSSIGSLISMTAVIMLMFIIWEAFTSKRKVLQPELTA
 TNVEWIHGCPPPYHTFEEPAFVQVQE
 ```
-
-
+Combined all species into a readable file for MAFFT to run. End product looked like:
+```
+>Aptenodytes_forsteri_COX1
+MTFINRWLFSTNHKDIGTLYLIFGAWAGMAGTALSLLIRAELGQPGTLLGDDQIYNVIVTAHAFVMIFFM
+VMPIMIGGFGNWLVPLMIGAPDMAFPRMNNMSFWLLPPSFLLLLASSTVEAGAGTGWTVYPPLAGNLAHA
+GPSVDLAIFSLHLAGVSSILGAINFITTAINMKPPALSQYQTPLFVWSVLITAVLLLLSLPVLAAGITML
+>Aptenodytes_patagonicus_COX1
+MTFINRWLFSTNHKDIGTLYLIFGAWAGMAGTALSLLIRAELGQPGTLLGDDQIYNVIVTAHAFVMIFFM
+VMPIMIGGFGNWLVPLMIGAPDMAFPRMNNMSFWLLPPSFLLLLASSTVEAGAGTGWTVYPPLAGNLAHA
+GPSVDLAIFSLHLAGVTSILGAINFITTAINMKPPALSQYQTPLFVWSVLITAVLLLLSLPVLAAGITML
+```
+*This is a small snippet from the entire file*
+## MAFFT
 
 ```shell
 # This renames the file correctly
@@ -93,7 +104,7 @@ If unsure which option to use, try 'mafft --auto input > output'.
 For more information, see 'mafft --help', 'mafft --man' and the mafft page.
 
 
-##MAFFT Assumputions and Limitations yuh
+### MAFFT Assumputions and Limitations yuh
 Description: MAFFT uses Fast Fourier Transform (FFT) to rapidly find homologous segments, making it significantly faster than traditional methods while maintaining high accuracy for protein sequences.
 
 Assumptions: The method assumes that the input sequences (COX1 proteins) are orthologous (descended from a common ancestor) and share global homology.
@@ -107,3 +118,4 @@ To disable this change, add the --leavegappyregion option.
 
 PS C:\Users\sabah\mafft-7.526-win64-signed\mafft-win>
 
+## Viewing Alignment
