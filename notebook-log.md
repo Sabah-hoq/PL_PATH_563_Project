@@ -89,9 +89,8 @@ To mitigate excessive gap insertion, the `--leavegappyregion` option can be used
  -  *Output: __aligned_penguins.fasta__*
 
 ## Parsimony and Distance Trees
-===============================
 ### Install & load packages
-===============================
+
 ```r
 packages <- c("ape", "phangorn")
 
@@ -137,7 +136,41 @@ Trees were visualized using SeaView
 
 --- 
 ## IQ-TREE
-
+**Software:** IQ-TREE v3.0.1  
+**Reference:** Nguyen et al. (2015); Minh et al. (2020)  
+**Input:** Aligned FASTA file from Step 1  
+**Output:** Maximum likelihood tree with bootstrap support values  
+ 
+IQ-TREE uses ModelFinder Plus (`-m MFP`) to automatically select the best-fit substitution model, then infers the maximum likelihood tree with 1000 ultrafast bootstrap replicates.
+ 
+```powershell
+# Set base directory variable
+$base = "C:\Users\sabah\software"
+ 
+# Create output directory for IQ-TREE results
+mkdir "$base\data_test\iqtree_results" -Force
+ 
+# Run IQ-TREE with ModelFinder and ultrafast bootstrap
+# -s : input alignment file
+# -m MFP : ModelFinder Plus - automatically selects best substitution model
+# -bb 1000 : 1000 ultrafast bootstrap replicates for branch support
+# -pre : prefix for all output files
+& "$base\iqtree\iqtree-3.0.1-Windows\bin\iqtree3" `
+    -s "$base\data_test\penguin_data\aligned_penguins.fasta" `
+    -m MFP `
+    -bb 1000 `
+    -pre "$base\data_test\iqtree_results\penguins"
+```
+ 
+**Output files:**
+| File | Description |
+|------|-------------|
+| `penguins.treefile` | Best maximum likelihood tree (use this in ASTRAL) |
+| `penguins.log` | Full log of the run including selected model |
+| `penguins.iqtree` | Full report including model parameters and tree |
+| `penguins.contree` | Consensus tree with bootstrap values |
+ 
+---
 ## MrBayes
 This pipeline takes an aligned protein FASTA file and runs a Bayesian phylogenetic analysis using MrBayes. Follow each step in order in PowerShell.
 
@@ -296,6 +329,97 @@ git push
 ### MrBayes Assumptions and Limitations 
 
 ## ASTRAL
+**Software:** ASTRAL 5.7.8  
+**Reference:** Mirarab (2019)  
+**Input:** Gene tree(s) in Newick format — use the IQ-TREE `.treefile` from Step 2  
+**Output:** Species tree with local posterior probability (LPP) support values  
+ 
+ASTRAL estimates a species tree under the multispecies coalescent model by finding the tree that maximizes the number of shared quartet topologies with the input gene trees.
+ 
+> **Note:** ASTRAL requires Java to be installed. Verify with `java -version` before running.
+ 
+```powershell
+# Set base directory variable
+$base = "C:\Users\sabah\software"
+ 
+# Verify Java is installed
+java -version
+ 
+# Run ASTRAL
+# -i : input gene tree file (IQ-TREE .treefile from Step 2)
+# -o : output species tree file
+# 2> : redirect log output to a text file (ASTRAL logs to stderr)
+java -jar "$base\ASTRAL\Astral\astral.5.7.8.jar" `
+    -i "$base\data_test\iqtree_results\penguins.treefile" `
+    -o "$base\ASTRAL\penguins_species_tree.tre" `
+    2> "$base\ASTRAL\astral_log.txt"
+```
+ 
+**Output files:**
+| File | Description |
+|------|-------------|
+| `penguins_species_tree.tre` | Species tree with LPP support values |
+| `astral_log.txt` | Full log including quartet scores |
+ 
+**Check ASTRAL log for:**
+- Normalized quartet score (higher = more gene tree concordance)
+- Local posterior probability values at each node
+---
+## Step 5: Tree Visualization with iTOL
+ 
+All trees were visualized using the Interactive Tree of Life (iTOL) web tool (https://itol.embl.de/).
+ 
+**To upload a tree:**
+1. Go to https://itol.embl.de/
+2. Click **Upload** in the top menu
+3. Upload your tree file:
+   - IQ-TREE: `penguins.treefile`
+   - MrBayes: `aligned_penguins.nex.con.tre`
+   - ASTRAL: `penguins_species_tree.tre`
+   - Parsimony: `aligned_penguins_clean-Protpars.`
+   - Distance: `aligned_penguins_clean-BioNJ_tree.`
+5. Customize visualization as needed
+6. Export as PDF with **white background** for publication quality
+   - Use 600 dpi for clear images
+**iTOL settings used:**
+- Display mode: Normal (rectangular)
+- Bootstrap/support values: displayed at nodes
+- Branch lengths: displayed
+- Background: white
+---
+ 
+## Summary of Output Files
+ 
+| Analysis | Key Output File | Support Measure |
+|----------|----------------|-----------------|
+| MAFFT | `aligned_penguins.fasta` | N/A |
+| IQ-TREE | `penguins.treefile` | Bootstrap (68-96) |
+| MrBayes | `aligned_penguins.nex.con.tre` | Posterior probability (0.98-1.00) |
+| ASTRAL | `penguins_species_tree.tre` | Local posterior probability (0.67) |
+ 
+---
 
-
-
+## References
+ 
+Huelsenbeck, J. P., & Ronquist, F. (2001). MRBAYES: Bayesian inference of phylogenetic trees. *Bioinformatics*, 17(8), 754–755.
+ 
+Katoh, K., Misawa, K., Kuma, K., & Miyata, T. (2002). MAFFT: a novel method for rapid multiple sequence alignment based on fast Fourier transform. *Nucleic Acids Research*, 30(14), 3059–3066.
+ 
+Minh, B. Q., Schmidt, H. A., Chernomor, O., Schrempf, D., Woodhams, M. D., von Haeseler, A., & Lanfear, R. (2020). IQ-TREE 2: New models and efficient methods for phylogenetic inference in the genomic era. *Molecular Biology and Evolution*, 37(5), 1530–1534.
+ 
+Mirarab, S. (2019). Species tree estimation using ASTRAL: Practical considerations. *arXiv:1904.03826*.
+ 
+National Center for Biotechnology Information (NCBI). (2024a). *Cytochrome c oxidase subunit I (COX1), Aptenodytes forsteri* [Gene ID: 26045193]. NCBI Gene. https://www.ncbi.nlm.nih.gov/datasets/gene/26045193
+ 
+National Center for Biotechnology Information (NCBI). (2024b). *Cytochrome c oxidase subunit I (COX1), Aptenodytes patagonicus* [Gene ID: 26737703]. NCBI Gene. https://www.ncbi.nlm.nih.gov/datasets/gene/26737703
+ 
+National Center for Biotechnology Information (NCBI). (2024c). *Cytochrome c oxidase subunit I (COX1), Eudyptula minor* [Gene ID: 806254]. NCBI Gene. https://www.ncbi.nlm.nih.gov/datasets/gene/806254
+ 
+National Center for Biotechnology Information (NCBI). (2024d). *Cytochrome c oxidase subunit I (COX1), Pygoscelis adeliae* [Gene ID: 36935527]. NCBI Gene. https://www.ncbi.nlm.nih.gov/datasets/gene/36935527
+ 
+National Center for Biotechnology Information (NCBI). (2024e). *Cytochrome c oxidase subunit I (COX1), Pygoscelis papua* [Gene ID: 42904018]. NCBI Gene. https://www.ncbi.nlm.nih.gov/datasets/gene/42904018
+ 
+Nguyen, L. T., Schmidt, H. A., von Haeseler, A., & Minh, B. Q. (2015). IQ-TREE: A fast and effective stochastic algorithm for estimating maximum-likelihood phylogenies. *Molecular Biology and Evolution*, 32(1), 268–274.
+ 
+Ronquist, F., & Huelsenbeck, J. P. (2003). MrBayes 3: Bayesian phylogenetic inference under mixed models. *Bioinformatics*, 19(12), 1572–1574.
+ 
