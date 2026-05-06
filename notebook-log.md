@@ -88,10 +88,54 @@ To mitigate excessive gap insertion, the `--leavegappyregion` option can be used
  -  *Input: __p.fasta__*
  -  *Output: __aligned_penguins.fasta__*
 
-## Viewing Alignment
-
 ## Parsimony and Distance Trees
+===============================
+### Install & load packages
+===============================
+```r
+packages <- c("ape", "phangorn")
 
+for (p in packages) {
+  if (!require(p, character.only = TRUE)) {
+    install.packages(p, dependencies = TRUE)
+    library(p, character.only = TRUE)
+  }
+}
+```
+
+### Load alignment (FASTA protein)
+```r
+alignment_file <- "aligned_penguins_fixed.fasta"
+
+aa <- read.phyDat(alignment_file, format = "fasta", type = "AA")
+```
+---
+### Distance tree (Neighbor-Joining)
+```r
+dist_matrix <- dist.ml(aa)
+tree_nj <- nj(dist_matrix)
+```
+
+### Parsimony tree
+```r
+tree_pars <- optim.parsimony(tree_nj, aa)
+```
+### Plot trees
+
+```r
+plot(tree_nj, main = "Neighbor-Joining Tree", cex = 0.7)
+plot(tree_pars, main = "Parsimony Tree", cex = 0.7)
+```
+
+--- 
+### Viewing Alignment
+Trees were visualized using SeaView
+
+- Fasta file uploaded
+- Used the Distance and Parsimony method to view trees
+- Rerooted at *Eudyptula minor* as it is outgroup
+
+--- 
 ## IQ-TREE
 
 ## MrBayes
