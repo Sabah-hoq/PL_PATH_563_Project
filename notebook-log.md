@@ -30,93 +30,63 @@ VMPIMIGGFGNWLVPLMIGAPDMAFPRMNNMSFWLLPPSFLLLLASSTVEAGAGTGWTVYPPLAGNLAHA
 GPSVDLAIFSLHLAGVTSILGAINFITTAINMKPPALSQYQTPLFVWSVLITAVLLLLSLPVLAAGITML
 ```
 *This is a small snippet from the entire file*
-## MAFFT
+## MAFFT - Aligning the Data 
+### Requirements
 
-```shell
-# This renames the file correctly
+- Windows with PowerShell
+- [Python 3](https://www.python.org/downloads/)
+- [MAFFT for Windows](https://mafft.cbrc.jp/alignment/software/)
+- A GitHub account with a repository set up
+---
+### Step 1: File Preparation
+Prior to alignment, the input FASTA file was renamed to ensure compatibility with downstream software:
+```powershell
+# Rename the input file to proper FASTA format
 Rename-Item p.fasta.txt p.fasta
 ```
 
-```shell
+### Step 2: Sequence Alignment
+Multiple sequence alignment was performed using MAFFT (v7.526) with the automatic parameter selection option:
+```powershell
 .\mafft.bat --auto p.fasta > aligned_penguins.fasta
-``` 
+```
+The `--auto` flag allows MAFFT to determine the most appropriate alignment strategy based on the size and similarity of the input sequences.
 
-Active code page: 65001♪◙ ♪◙Preparing environment to run MAFFT on Windows. ♪◙This may take a while, if real-time scanni◙
-It may take a while before the calculation starts
-if being scanned by anti-virus software.
-Also consider using a faster version for Windows 10:
-https://mafft.cbrc.jp/alignment/software/wsl.html
-outputhat23=16
-treein = 0
-compacttree = 0
-rescale = 1
-All-to-all alignment.
-tbfast-pair (aa) Version 7.526
-alg=L, model=BLOSUM62, 2.00, -0.10, +0.10, noshift, amax=0.0
-0 thread(s)
+---
+### Alignment Details
 
-outputhat23=16
-Loading 'hat3.seed' ...
-done.
-Writing hat3 for iterative refinement
-rescale = 1
-Gap Penalty = -1.53, +0.00, +0.00
-tbutree = 1, compacttree = 0
-Constructing a UPGMA tree ...
-    0 / 5
-done.
+MAFFT selected the **L-INS-i algorithm**, an iterative refinement method that incorporates local pairwise alignment information. This approach is generally considered one of the most accurate alignment strategies, particularly for datasets with conserved domains and moderate sequence divergence.
+Key parameters and steps included:
+- **Substitution matrix**: BLOSUM62
+- **Alignment type**: Local pairwise alignment with iterative refinement
+- **Guide tree construction**: UPGMA (Unweighted Pair Group Method with Arithmetic Mean)
+- **Iterations**: Up to 16 refinement cycles
+- **Gap penalty**: Adjusted dynamically (default MAFFT settings)
+The alignment process involved:
+1) Initial pairwise comparisons
+2) Guide tree construction
+3) Progressive alignment
+4) Iterative refinement until convergence
 
-Progressive alignment ...
-STEP     4 /4
-done.
-C:\Users\sabah\mafft-7.526-win64-signed\mafft-win\usr\lib\mafft\tbfast.exe (aa) Version 7.526
-alg=A, model=BLOSUM62, 1.53, -0.00, -0.00, noshift, amax=0.0
-1 thread(s)
+--- 
 
-minimumweight = 0.000010
-autosubalignment = 0.000000
-nthread = 0
-randomseed = 0
-blosum 62 / kimura 200
-poffset = 0
-niter = 16
-sueff_global = 0.100000
-nadd = 16
-Loading 'hat3' ... done.
-rescale = 1
+### Assumptions and Limitations
 
-    0 / 5
-Segment   1/  1    1- 517
-STEP 002-003-1  identical.
-Converged.
+**Assumptions**
+MAFFT assumes that the input sequences (in this case, COX1 protein sequences) are homologous, meaning they share a common evolutionary origin. It also assumes that sequence similarity reflects evolutionary relationships.
+**Limitations**
+While MAFFT is highly efficient and accurate, certain limitations should be considered:
+- Performance may decrease with **highly divergent sequences**, where alignment becomes ambiguous
+- **Gap penalty** schemes may not fully capture biological insertion/deletion events
+- Default parameters may introduce additional gaps in **gap-rich regions** (a known change since version 7.110)
 
-done
-C:\Users\sabah\mafft-7.526-win64-signed\mafft-win\usr\lib\mafft\dvtditr.exe (aa) Version 7.526
-alg=A, model=BLOSUM62, 1.53, -0.00, -0.00, noshift, amax=0.0
-0 thread(s)
-
-
-Strategy:
- L-INS-i (Probably most accurate, very slow)
- Iterative refinement method (<16) with LOCAL pairwise alignment information
-
-If unsure which option to use, try 'mafft --auto input > output'.
-For more information, see 'mafft --help', 'mafft --man' and the mafft page.
-
-
-### MAFFT Assumptions and Limitations yuh
-Description: MAFFT uses Fast Fourier Transform (FFT) to rapidly find homologous segments, making it significantly faster than traditional methods while maintaining high accuracy for protein sequences.
-
-Assumptions: The method assumes that the input sequences (COX1 proteins) are orthologous (descended from a common ancestor) and share global homology.
-
-Limitations: It may struggle with highly divergent sequences where gap penalties (scoring how much a "dash" costs) don't perfectly match biological reality.
-
-The default gap scoring scheme has been changed in version 7.110 (2013 Oct).
-It tends to insert more gaps into gap-rich regions than previous versions.
-To disable this change, add the --leavegappyregion option.
-
-
-PS C:\Users\sabah\mafft-7.526-win64-signed\mafft-win>
+---
+To mitigate excessive gap insertion, the `--leavegappyregion` option can be used if necessary.
+*Notes:*
+ -  *Software: MAFFT v7.526*
+ -  *Platform: Windows (command-line interface)*
+ -  *Input: __p.fasta__*
+ -  *Output: __aligned_penguins.fasta__*
 
 ## Viewing Alignment
 
@@ -278,6 +248,8 @@ git push
 - The `.run1.t`, `.run2.t`, `.run1.p`, `.run2.p` files are very large and not essential to commit. You can add them to `.gitignore` if needed.
 - Good convergence is indicated by an **average standard deviation of split frequencies below 0.01** — check this in the MrBayes output before trusting your tree.
 - The consensus tree file (`.con.tre`) can be visualised in [FigTree](http://tree.bio.ed.ac.uk/software/figtree/) or [iTOL](https://itol.embl.de/).
+  
+### MrBayes Assumptions and Limitations 
 
 ## ASTRAL
 
