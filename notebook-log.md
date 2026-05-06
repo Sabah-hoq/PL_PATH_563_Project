@@ -1,8 +1,8 @@
-Data was taken from the NCBI
+Reproducible Script for Phylogenetics Analysis 
 ===
-Link to all data can be found here: ...
-
 ## Getting Data 
+### Data was taken from the NCBI
+Link to all data can be found here: ...
 On the NCBI website, I looked for specific species of penguins like *Aptenodytes forsteri* (my main species). 
 
 Selected the "Protein sequences (FASTA)" as my download option. Given a zip file containing all the information, I went to the file named "protein.faa" an FAA file. I read the contents in Notepad, a text reader.
