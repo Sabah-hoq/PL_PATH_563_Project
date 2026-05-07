@@ -2,7 +2,7 @@ Reproducible Script for Phylogenetics Analysis
 ===
 ## Getting Data 
 ### Data was taken from the NCBI
-Link to all data can be found here: ...
+Link to all data can be found here: NCBI 2024a-e
 On the NCBI website, I looked for specific species of penguins like *Aptenodytes forsteri* (my main species). 
 
 Selected the "Protein sequences (FASTA)" as my download option. Given a zip file containing all the information, I went to the file named "protein.faa" an FAA file. I read the contents in Notepad, a text reader.
@@ -113,6 +113,7 @@ aa <- read.phyDat(alignment_file, format = "fasta", type = "AA")
 ```r
 dist_matrix <- dist.ml(aa)
 tree_nj <- nj(dist_matrix)
+
 ```
 
 ### Parsimony tree
@@ -122,13 +123,26 @@ tree_pars <- optim.parsimony(tree_nj, aa)
 ### Plot trees
 
 ```r
-plot(tree_nj, main = "Neighbor-Joining Tree", cex = 0.7)
-plot(tree_pars, main = "Parsimony Tree", cex = 0.7)
+# Plot Distance tree with fixed margins
+par(mar = c(2, 2, 2, 8))  
+nj <- plot(tree_nj, main = "Distance-Based (NJ) Tree", cex = 0.8)
+# Plot Parsimony tree with fixed margins
+par(mar = c(2, 2, 2, 8)) 
+pars <- plot(tree_pars, main = "Maximum Parsimony Tree", cex = 0.8)
 ```
+### Rerooting the Trees
+```r
+par(mar = c(2, 2, 2, 8))
+plot(tree_pars_rooted, main = "Maximum Parsimony Tree", cex = 0.8)
 
+par(mar = c(2, 2, 2, 8))
+plot(tree_nj_rooted, type = "phylogram", main = "NJ Distance Tree", cex = 0.8)
+add.scale.bar()
+```
 --- 
 ### Viewing Alignment
 Trees were visualized using SeaView
+[SeaView](https://doua.prabi.fr/software/seaview)
 
 - Fasta file uploaded
 - Used the Distance and Parsimony method to view trees
@@ -140,7 +154,8 @@ Trees were visualized using SeaView
 **Reference:** Nguyen et al. (2015); Minh et al. (2020)  
 **Input:** Aligned FASTA file from Step 1  
 **Output:** Maximum likelihood tree with bootstrap support values  
- 
+[IQ-TREE Windows Download](https://iqtree.github.io/)
+
 IQ-TREE uses ModelFinder Plus (`-m MFP`) to automatically select the best-fit substitution model, then infers the maximum likelihood tree with 1000 ultrafast bootstrap replicates.
  
 ```powershell
@@ -326,13 +341,13 @@ git push
 - Good convergence is indicated by an **average standard deviation of split frequencies below 0.01** — check this in the MrBayes output before trusting your tree.
 - The consensus tree file (`.con.tre`) can be visualised in [FigTree](http://tree.bio.ed.ac.uk/software/figtree/) or [iTOL](https://itol.embl.de/).
   
-### MrBayes Assumptions and Limitations 
 
 ## ASTRAL
 **Software:** ASTRAL 5.7.8  
 **Reference:** Mirarab (2019)  
 **Input:** Gene tree(s) in Newick format — use the IQ-TREE `.treefile` from Step 2  
 **Output:** Species tree with local posterior probability (LPP) support values  
+[ASTRAL for Windows](https://github.com/smirarab/ASTRAL)
  
 ASTRAL estimates a species tree under the multispecies coalescent model by finding the tree that maximizes the number of shared quartet topologies with the input gene trees.
  
@@ -346,9 +361,9 @@ $base = "C:\Users\sabah\software"
 java -version
  
 # Run ASTRAL
-# -i : input gene tree file (IQ-TREE .treefile from Step 2)
-# -o : output species tree file
-# 2> : redirect log output to a text file (ASTRAL logs to stderr)
+# -i: input gene tree file (IQ-TREE .treefile from Step 2)
+# -o: output species tree file
+# 2: redirect log output to a text file (ASTRAL logs to stderr)
 java -jar "$base\ASTRAL\Astral\astral.5.7.8.jar" `
     -i "$base\data_test\iqtree_results\penguins.treefile" `
     -o "$base\ASTRAL\penguins_species_tree.tre" `
